@@ -8,7 +8,7 @@ import molecule_vae
 
 
 
-f = open('data/250k_rndm_zinc_drugs_clean.smi','r')
+f = open('data/biocad_dataset.smi','r')
 L = []
 
 count = -1
