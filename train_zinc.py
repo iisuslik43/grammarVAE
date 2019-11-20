@@ -20,7 +20,7 @@ MAX_LEN = 277
 DIM = len(rules)
 LATENT = 56
 EPOCHS = 100
-BATCH = 500
+BATCH = 50
 
 
 
@@ -42,8 +42,9 @@ def main():
     
     # 1. split into train/test, we use test set to check reconstruction error and the % of
     # samples from prior p(z) that are valid
-    XTE = data[0:5000]
-    XTR = data[5000:]
+    train_len = int(len(data) / 2)
+    XTE = data[0:train_len]
+    XTR = data[train_len:]
 
     np.random.seed(1)
     # 2. get any arguments and define save file, then create the VAE model
