@@ -4,7 +4,7 @@ import molecule_vae
 import numpy as np
 
 # 1. load grammar VAE
-grammar_weights = "pretrained/zinc_vae_grammar_L56_E100_val.hdf5"
+grammar_weights = "grammarVAE/pretrained/zinc_vae_grammar_L56_E100_val.hdf5"
 grammar_model = molecule_vae.ZincGrammarModel(grammar_weights)
 
 # 2. let's encode and decode some example SMILES strings
@@ -31,7 +31,7 @@ for mol,real in zip(grammar_model.decode(z1),smiles):
 
 # 3. the character VAE (https://github.com/maxhodak/keras-molecules)
 # works the same way, let's load it
-char_weights = "pretrained/zinc_vae_str_L56_E100_val.hdf5"
+char_weights = "grammarVAE/pretrained/zinc_vae_str_L56_E100_val.hdf5"
 char_model = molecule_vae.ZincCharacterModel(char_weights)
 
 # 4. encode and decode
