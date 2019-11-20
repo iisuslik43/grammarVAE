@@ -20,7 +20,7 @@ MAX_LEN = 277
 DIM = len(rules)
 LATENT = 56
 EPOCHS = 100
-BATCH = 50
+BATCH = 400
 
 
 
@@ -84,3 +84,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+    import sys
+    sys.path.append('grammarVAE')

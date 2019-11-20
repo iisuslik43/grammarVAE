@@ -41,7 +41,7 @@ def to_one_hot(smiles):
     return one_hot
 
 
-max_len = min(len(L), 1000)
+max_len = min(len(L), 10000)
 OH = np.zeros((max_len,MAX_LEN,NCHARS))
 for i in tqdm(range(0, max_len, 100)):
     #print('Processing: i=[' + str(i) + ':' + str(i+100) + ']')
