@@ -5,10 +5,11 @@ import zinc_grammar
 import numpy as np
 import h5py
 import molecule_vae
+from tqdm import tqdm
 
 
 
-f = open('data/biocad_dataset.smi','r')
+f = open('grammarVAE/data/250k_rndm_zinc_drugs_clean.smi','r')
 L = []
 
 count = -1
@@ -41,11 +42,12 @@ def to_one_hot(smiles):
 
 
 OH = np.zeros((len(L),MAX_LEN,NCHARS))
-for i in range(0, len(L), 100):
-    print('Processing: i=[' + str(i) + ':' + str(i+100) + ']')
+max_len = min(len(L), 10000)
+for i in tqdm(range(0, max_len, 100)):
+    #print('Processing: i=[' + str(i) + ':' + str(i+100) + ']')
     onehot = to_one_hot(L[i:i+100])
     OH[i:i+100,:,:] = onehot
 
-h5f = h5py.File('zinc_grammar_dataset.h5','w')
+h5f = h5py.File('grammarVAE/data/zinc_grammar_dataset.h5','w')
 h5f.create_dataset('data', data=OH)
 h5f.close()
