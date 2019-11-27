@@ -10,7 +10,8 @@ from tqdm import tqdm
 
 
 #f = open('grammarVAE/data/250k_rndm_zinc_drugs_clean.smi','r')
-f = open('data/biocad_dataset.smi','r')
+#f = open('data/biocad_dataset.smi','r')
+f = open('data/biocad_reactions_dataset.smi','r')
 L = []
 
 count = -1
@@ -57,6 +58,7 @@ for i in tqdm(range(0, max_len, step)):
 print(OH.shape)
 
 #h5f = h5py.File('grammarVAE/data/zinc_grammar_dataset.h5','w')
-h5f = h5py.File('data/biocad_grammar_dataset.h5','w')
+#h5f = h5py.File('data/biocad_grammar_dataset.h5','w')
+h5f = h5py.File('data/biocad_reactions_grammar_dataset.h5','w')
 h5f.create_dataset('data', data=OH)
 h5f.close()

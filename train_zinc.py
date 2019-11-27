@@ -33,7 +33,8 @@ def get_arguments():
 
 def main():
     # 0. load dataset
-    h5f = h5py.File('data/biocad_grammar_dataset.h5', 'r')
+    h5f = h5py.File('data/biocad_reactions_grammar_dataset.h5', 'r')
+    #h5f = h5py.File('data/biocad_grammar_dataset.h5', 'r')
     # h5f = h5py.File('grammarVAE/data/zinc_grammar_dataset.h5', 'r')
     data = h5f['data'][:]
     h5f.close()
