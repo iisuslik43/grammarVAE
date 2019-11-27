@@ -83,7 +83,7 @@ chain -> branched_atom
 chain -> chain branched_atom
 chain -> chain bond branched_atom
 Nothing -> None
-reaction -> molecules '>' molecules
+reaction -> molecules '>>' molecules
 molecules -> chain"""
 
 # form the CFG and get the start symbol
