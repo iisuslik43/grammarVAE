@@ -9,7 +9,8 @@ from tqdm import tqdm
 
 
 
-f = open('grammarVAE/data/250k_rndm_zinc_drugs_clean.smi','r')
+#f = open('grammarVAE/data/250k_rndm_zinc_drugs_clean.smi','r')
+f = open('data/biocad_dataset.smi','r')
 L = []
 
 count = -1
@@ -40,14 +41,22 @@ def to_one_hot(smiles):
         one_hot[i][np.arange(num_productions, MAX_LEN),-1] = 1.
     return one_hot
 
-
+step = 100
 max_len = min(len(L), 10000)
-OH = np.zeros((max_len,MAX_LEN,NCHARS))
-for i in tqdm(range(0, max_len, 100)):
+OH = None
+for i in tqdm(range(0, max_len, step)):
     #print('Processing: i=[' + str(i) + ':' + str(i+100) + ']')
-    onehot = to_one_hot(L[i:i+100])
-    OH[i:i+100,:,:] = onehot
+    try:
+        onehot = to_one_hot(L[i:i+step])
+        if OH is None:
+          OH = onehot
+        else:
+          OH = np.concatenate((OH, onehot), axis=0)
+    except (ValueError, IndexError, StopIteration):
+        pass
+print(OH.shape)
 
-h5f = h5py.File('grammarVAE/data/zinc_grammar_dataset.h5','w')
+#h5f = h5py.File('grammarVAE/data/zinc_grammar_dataset.h5','w')
+h5f = h5py.File('data/biocad_grammar_dataset.h5','w')
 h5f.create_dataset('data', data=OH)
 h5f.close()

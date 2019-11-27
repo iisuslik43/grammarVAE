@@ -4,7 +4,12 @@ import six
 import pdb
 
 # the zinc grammar
-gram = """smiles -> chain
+
+# TODO - molecules -> list of molecules
+
+gram = """smiles -> reaction
+reaction -> molecules '>>' molecules
+molecules -> chain
 atom -> bracket_atom
 atom -> aliphatic_organic
 atom -> aromatic_organic
