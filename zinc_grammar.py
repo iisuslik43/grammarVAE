@@ -8,8 +8,6 @@ import pdb
 # TODO - molecules -> list of molecules
 
 gram = """smiles -> reaction
-reaction -> molecules '>>' molecules
-molecules -> chain
 atom -> bracket_atom
 atom -> aliphatic_organic
 atom -> aromatic_organic
@@ -84,7 +82,9 @@ branch -> '(' bond chain ')'
 chain -> branched_atom
 chain -> chain branched_atom
 chain -> chain bond branched_atom
-Nothing -> None"""
+Nothing -> None
+reaction -> molecules '>' molecules
+molecules -> chain"""
 
 # form the CFG and get the start symbol
 GCFG = nltk.CFG.fromstring(gram)
